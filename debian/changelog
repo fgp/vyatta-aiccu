@@ -1,3 +1,13 @@
+vyatta-aiccu (1.0) unstable; urgency=low
+
+  * Create the tunnel interface as early as possible, launch aiccu later
+  * Fixed server/node.def, and renamed tls to requiretls
+  * Fixed leftover in tic/node.def, and de-stubbed vyatta-update-aiccu
+  * Fixed bugs in vyatta-update-aiccu
+  * Fixed package-release.sh
+
+ -- Florian Pflug <fgp@phlo.org>  Sat, 25 Oct 2014 14:42:09 +0200
+
 vyatta-aiccu (0.1) unstable; urgency=low
 
   * Initial release
