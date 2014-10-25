@@ -1,0 +1,8 @@
+Origin: Florian Pflug
+Label: Florian Pflug
+Codename: squeeze
+Architectures: mips source
+Components: contrib
+Description: Vyatta toredo relay extension APT repository
+DebOverride: override.squeeze
+DscOverride: override.squeeze

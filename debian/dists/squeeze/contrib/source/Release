@@ -1,0 +1,5 @@
+Component: contrib
+Origin: Florian Pflug
+Label: Florian Pflug
+Architecture: source
+Description: Vyatta toredo relay extension APT repository
