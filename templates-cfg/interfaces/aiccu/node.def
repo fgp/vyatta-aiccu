@@ -1,0 +1,28 @@
+tag:
+priority: 500
+type: txt
+help: AICCU tunnel interface name
+val_help: <aiccuN>; Tunnel interface name
+syntax:expression: pattern $VAR(@) "^aiccu[0-9]+$" \
+	; "tunnel must be (aiccu0-aiccu999)"
+
+end:
+	case ${COMMIT_ACTION} in
+		SET | ACTIVE)
+			sudo /opt/vyatta/sbin/vyatta-update-aiccu enable \
+				"$VAR(@)" \
+				"$VAR(tic/server/@)" \
+				"$VAR(tic/tls/@)" \
+				"$VAR(tic/username/@)" \
+				"$VAR(tic/password/@)" \
+				"$VAR(tic/tunnel/@)"
+			;;
+		DELETE)
+			sudo /opt/vyatta/sbin/vyatta-update-aiccu disable \
+				"$VAR(@)"
+			;;
+		*)
+			echo "aiccu doesn't support ${COMMIT_ACTION}"
+			exit 1
+			;;
+	esac

@@ -1,0 +1,5 @@
+/debian/files
+/debian/vyatta-aiccu/
+/debian/vyatta-aiccu.substvars
+/debian/vyatta-aiccu.debhelper.log
+

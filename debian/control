@@ -1,0 +1,17 @@
+Source: vyatta-aiccu
+Section: contrib/net
+Priority: extra
+Maintainer: Florian Pflug <fgp@phlo.org>
+Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 5)
+
+Package: vyatta-aiccu
+Architecture: all
+Depends: vyatta-cfg-system,
+ vyatta-cfg,
+ vyatta-op,
+ aiccu,
+ ${misc:Depends}
+Replaces: vyatta-aiccu
+Description: Vyatatta AICCU configuration templates and scripts
+ Vyatatta AICCU configuration templates and scripts

@@ -1,0 +1,7 @@
+vyatta-aiccu: description-synopsis-is-duplicated
+vyatta-aiccu: duplicate-changelog-files
+vyatta-aiccu: file-in-unusual-dir
+vyatta-aiccu: dir-or-file-in-opt
+vyatta-aiccu: duplicate-updaterc.d-calls-in-postrm
+vyatta-aiccu: postrm-contains-additional-updaterc.d-calls
+vyatta-aiccu: diversion-for-unknown-file

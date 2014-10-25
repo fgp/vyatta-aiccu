@@ -1,0 +1,6 @@
+The Debian Package vyatta-aiccu
+--------------------------------------
+
+This package allows AICCU to be used to establish AYIYA tunnels via Vyatta
+
+ -- Florian Pflug <fgp@phlo.org>  Wed Oct  9 20:16:03 CEST 2013

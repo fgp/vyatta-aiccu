@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+set -e
+
+if [ "$1" != "upgrade" ]; then
+	# Don't start aiccu at boot, let Vyatta do that
+	# Since we provide /etc/insserv/overrides/aiccu, a later
+	# update-rc.d aiccu defaults shouldn't undo this.
+	update-rc.d -f aiccu remove
+fi
+
+#DEBHELPER#

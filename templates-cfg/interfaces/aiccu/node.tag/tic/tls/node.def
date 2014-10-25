@@ -1,0 +1,3 @@
+type: bool
+default: true
+help: Set to true to require TLS when querying the TIC server

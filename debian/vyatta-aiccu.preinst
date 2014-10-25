@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+set -e
+
+if [ "$1" != "upgrade" ]; then
+	# Divert /etc/default/aiccu out of the way, Vyatta
+	# will want to overwrite this file
+	dpkg-divert --package vyatta-aiccu --add --rename \
+	--divert /etc/default/aiccu.vyatta-orig /etc/default/aiccu
+	
+	# Provide a stub /etc/default/aiccu until Vyatta
+	# writes one itself	
+	(echo '#Will be overwritten by Vyatta, do not edit!'
+	 echo 'AICCU_ENABLED=No'
+	 echo 'DAEMON_ARGS=""'
+	) > /etc/default/aiccu
+
+	# Don't start mirede at boot, let Vyatta do that
+	# Since we provide /etc/insserv/overrides/aiccu, a later
+	# update-rc.d aiccu defaults shouldn't undo this.
+	update-rc.d -f aiccu remove
+fi
+
+#DEBHELPER#
