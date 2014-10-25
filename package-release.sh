@@ -3,8 +3,9 @@ set -e
 
 version="$1"
 
-if [ "$nextversion" = "" ]; then
+if [ "$version" = "" ]; then
 	echo "Usage: $0 <version>" >&2
+	exit 1
 fi
 
 echo "Checking if the working copy contains uncommited changes..."
