@@ -1,1 +1,30 @@
+priority: 500
 help: TIC settings
+
+commit:expression: $VAR(./username/) != "" ; \
+                   "Must configure the TIC username for $VAR(../@)"
+commit:expression: $VAR(./password/) != "" || $VAR(./6rd-prefix/) != ""; \
+                   "Must configure the TIC password for $VAR(../@)"
+commit:expression: $VAR(./tunnel/) != "" ; \
+                   "Must configure the tunnel to use for $VAR(../@)"
+
+end:
+	case ${COMMIT_ACTION} in
+		SET | ACTIVE)
+			sudo /opt/vyatta/sbin/vyatta-update-aiccu start \
+				"$VAR(../@)" \
+				"$VAR(server/@)" \
+				"$VAR(tls/@)" \
+				"$VAR(username/@)" \
+				"$VAR(password/@)" \
+				"$VAR(tunnel/@)"
+			;;
+		DELETE)
+			sudo /opt/vyatta/sbin/vyatta-update-aiccu stop \
+				"$VAR(../@)"
+			;;
+		*)
+			echo "aiccu doesn't support ${COMMIT_ACTION}"
+			exit 1
+			;;
+	esac

@@ -1,24 +1,20 @@
 tag:
-priority: 500
+priority: 365
 type: txt
 help: AICCU tunnel interface name
 val_help: <aiccuN>; Tunnel interface name
-syntax:expression: pattern $VAR(@) "^aiccu[0-9]+$" \
-	; "tunnel must be (aiccu0-aiccu999)"
+syntax:expression: pattern $VAR(@) "^aiccu[0-9]+$" ; \
+	           "tunnel must be (aiccu0-aiccu999)"
+
 
 end:
 	case ${COMMIT_ACTION} in
 		SET | ACTIVE)
-			sudo /opt/vyatta/sbin/vyatta-update-aiccu enable \
-				"$VAR(@)" \
-				"$VAR(tic/server/@)" \
-				"$VAR(tic/tls/@)" \
-				"$VAR(tic/username/@)" \
-				"$VAR(tic/password/@)" \
-				"$VAR(tic/tunnel/@)"
+			sudo /opt/vyatta/sbin/vyatta-update-aiccu create \
+				"$VAR(@)"
 			;;
 		DELETE)
-			sudo /opt/vyatta/sbin/vyatta-update-aiccu disable \
+			sudo /opt/vyatta/sbin/vyatta-update-aiccu remove \
 				"$VAR(@)"
 			;;
 		*)
