@@ -3,7 +3,7 @@ help: TIC settings
 
 commit:expression: $VAR(./username/) != "" ; \
                    "Must configure the TIC username for $VAR(../@)"
-commit:expression: $VAR(./password/) != "" || $VAR(./6rd-prefix/) != ""; \
+commit:expression: $VAR(./password/) != ""; \
                    "Must configure the TIC password for $VAR(../@)"
 commit:expression: $VAR(./tunnel/) != "" ; \
                    "Must configure the tunnel to use for $VAR(../@)"

@@ -4,10 +4,8 @@
 set -e
 
 # Paths
-#AICCU_VAR=/var/run/aiccu
-AICCU_VAR=~/aiccu
-#AICCU_BIN=/usr/bin/aiccu
-AICCU_BIN=/bin/true
+AICCU_VAR=/var/run/aiccu
+AICCU_BIN=/usr/bin/aiccu
 
 # Arguments
 function usage() {
