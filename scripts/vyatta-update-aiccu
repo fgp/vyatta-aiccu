@@ -5,7 +5,7 @@ set -e
 
 # Paths
 AICCU_VAR=/var/run/aiccu
-AICCU_BIN=/usr/bin/aiccu
+AICCU_BIN=/usr/sbin/aiccu
 
 # Arguments
 function usage() {
@@ -14,6 +14,11 @@ function usage() {
 	echo "  start <iface> <server> <requiretls> <user> <pw> <tunnel> |" >&2
 	echo "  stop <iface> |" >&2
 	echo "  remove <iface>" >&2
+	exit 1
+}
+
+function die() {
+	echo "interfaces aiccu $cfg_iface: $1" >&2
 	exit 1
 }
 
@@ -26,7 +31,7 @@ case "$cfg_action" in
 		
 		# Create tunnel interface
 		ip tuntap add mode tun pi $cfg_iface || \
-			echo "interfaces aiccu $cfg_iface: failed to create tunnel interface"
+			die "failed to create tunnel interface"
 		;;
 	start)
 		# Arguments
@@ -59,13 +64,16 @@ case "$cfg_action" in
 		 echo 'defaultroute false'
 		 echo 'makebeats true'
 		 echo 'daemonize true'
+		 echo 'verbose true'
 		 echo "pidfile $AICCU_VAR/$cfg_iface.pid"
-		) > $AICCU_VAR/$cfg_iface.conf
+		) > $AICCU_VAR/$cfg_iface.conf || \
+			die "failed to create config file"
 		
 		# (Re)start
-		$AICCU_BIN stop $AICCU_VAR/$cfg_iface.conf >/dev/null 2>&1
+		$AICCU_BIN stop $AICCU_VAR/$cfg_iface.conf >/dev/null 2>&1 || true
 		$AICCU_BIN start $AICCU_VAR/$cfg_iface.conf || \
-			echo "interfaces aiccu $cfg_iface: failed to establish tunnel"
+			die "failed to establish tunnel"
+		echo "interfaces aiccu $cfg_iface: started"
 		;;
 	stop)
 		# Arguments
@@ -73,7 +81,7 @@ case "$cfg_action" in
 
 		# Disable & stop
 		if [ -f $AICCU_VAR/$cfg_iface.conf ]; then
-			$AICCU_BIN stop $AICCU_VAR/$cfg_iface.conf
+			$AICCU_BIN stop $AICCU_VAR/$cfg_iface.conf || true
 			rm $AICCU_VAR/$cfg_iface.conf >/dev/null 2>&1
 		fi
 		;;
@@ -83,12 +91,13 @@ case "$cfg_action" in
 		
 		# Disable & stop
 		if [ -f $AICCU_VAR/$cfg_iface.conf ]; then
-			$AICCU_BIN stop $AICCU_VAR/$cfg_iface.conf
+			$AICCU_BIN stop $AICCU_VAR/$cfg_iface.conf || true
 			rm $AICCU_VAR/$cfg_iface.conf >/dev/null 2>&1
 		fi
 		
 		# Remove tunnel interface
-		ip tuntap del mode tun pi $cfg_iface
+		ip tuntap del mode tun pi $cfg_iface ||
+			die "failed to remove tunnel interface"
 		;;
 	*)
 		usage
