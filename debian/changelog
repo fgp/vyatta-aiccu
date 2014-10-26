@@ -1,3 +1,9 @@
+vyatta-aiccu (1.1) precise; urgency=low
+
+  * Fixed start and restart behaviour upon configuration changes.
+
+ -- Florian Pflug <fgp@phlo.org>  Sun, 26 Oct 2014 15:27:47 +0100
+
 vyatta-aiccu (1.0) unstable; urgency=low
 
   * Create the tunnel interface as early as possible, launch aiccu later
