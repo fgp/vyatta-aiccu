@@ -1,17 +1,17 @@
 Package: vyatta-aiccu
-Version: 1.0
+Version: 1.1
 Architecture: all
 Maintainer: Florian Pflug <fgp@phlo.org>
-Installed-Size: 155
+Installed-Size: 156
 Depends: vyatta-cfg-system, vyatta-cfg, vyatta-op, aiccu
 Replaces: vyatta-aiccu
 Priority: extra
 Section: contrib/net
-Filename: pool/contrib/v/vyatta-aiccu/vyatta-aiccu_1.0_all.deb
-Size: 6268
-SHA256: 686f83524846f46fbff5d7a2d98d3bc42aa300bd73315cf2f9222153b81f9435
-SHA1: e27a7b4a5400094e67c4479354e7ac63126dca1e
-MD5sum: d3fe125341b74c5399e7600f030ff45c
+Filename: pool/contrib/v/vyatta-aiccu/vyatta-aiccu_1.1_all.deb
+Size: 6572
+SHA256: 70290858f12f0c42233cfb3ef4812d79960dcab8562ab20b3e5d4cb83b30cd02
+SHA1: 13f3c99ea28833f010cc36d4c08c32a71c42ae16
+MD5sum: eb00520ab80e2fcb865815f254248ec0
 Description: Vyatatta AICCU configuration templates and scripts
  Vyatatta AICCU configuration templates and scripts
 
