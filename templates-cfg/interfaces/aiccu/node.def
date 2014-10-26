@@ -11,7 +11,7 @@ end:
 	case ${COMMIT_ACTION} in
 		SET | ACTIVE)
 			sudo /opt/vyatta/sbin/vyatta-update-aiccu create \
-				"$VAR(@)"
+				"$VAR(@)" "$VAR(description/@)"
 			;;
 		DELETE)
 			sudo /opt/vyatta/sbin/vyatta-update-aiccu remove \
