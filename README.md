@@ -30,7 +30,7 @@ sudo apt-get update
 sudo apt-get install vyatta-aiccu
 ```
 
-And configure it. Assuming that you want to establish a tunnel provided by sixxs.net, you only need to set your account's username, password, and the ID of the tunnel you want to establish. To avoid store your sixxs.net password unencrypted in the EdgeOS configuration, consider setting a tunnel-specific password in the sixxs.net webinterface! Then set <username> to <sixxs handle>/<tunnel id> and <password> to the tunnel-specific you specified in the webinterface. Note that you still need to set <tunnel> to the <tunnel id> as well.
+And configure it. Assuming that you want to establish a tunnel provided by sixxs.net, you only need to set your account's username, password, and the ID of the tunnel you want to establish. To avoid store your sixxs.net password unencrypted in the EdgeOS configuration, consider setting a tunnel-specific password in the sixxs.net webinterface! Then set &lt;username&gt; to &lt;sixxs handle&gt;/&lt;tunnel id&gt; and &lt;password&gt; to the tunnel-specific you specified in the webinterface. Note that you still need to set &lt;tunnel> to the &lt;tunnel id&gt; as well.
     
 Here is an example.
 ```
