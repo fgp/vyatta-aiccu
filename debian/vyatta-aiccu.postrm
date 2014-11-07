@@ -4,15 +4,17 @@ set -e
 
 if [ "$1" = "remove" -o "$1" = "abort-install" -o "$1" = "disappear" ] ; then
 	# Remove Vyatta-generated /etc/default/aiccu
-	rm /etc/default/aiccu
+	rm -f /etc/default/aiccu
 	
 	# Restore original /etc/default/aiccu file
 	dpkg-divert --package vyatta-aiccu --remove --rename \
 	--divert /etc/default/aiccu.vyatta-orig /etc/default/aiccu
 	
 	# Restore original aiccu boot behaviour
-	update-rc.d -f aiccu remove
-	update-rc.d aiccu defaults
+	if [ -e /etc/init.d/aiccu ]; then
+		update-rc.d -f aiccu remove
+		update-rc.d aiccu defaults
+	fi
 fi
 
 #DEBHELPER#
